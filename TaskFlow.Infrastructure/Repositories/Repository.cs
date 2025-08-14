@@ -1,16 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using TaskFlow.Core.Interfaces;
-using TaskFlow.Infrastructure.Data;
 
 namespace TaskFlow.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly TaskFlowDbContext _context;
+        protected readonly Data.TaskFlowDbContext _context;
         protected readonly DbSet<T> _dbSet;
 
-        public Repository(TaskFlowDbContext context)
+        public Repository(Data.TaskFlowDbContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();

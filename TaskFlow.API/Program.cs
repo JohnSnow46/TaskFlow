@@ -1,7 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using TaskFlow.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using TaskFlow.Core.Entities;
+using TaskFlow.Core.Interfaces;
+using TaskFlow.Infrastructure.Data;
+using TaskFlow.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,13 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<TaskFlowDbContext>()
 .AddDefaultTokenProviders();
+
+// Repository Pattern
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ISprintRepository, SprintRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

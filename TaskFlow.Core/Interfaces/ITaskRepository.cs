@@ -7,7 +7,7 @@ namespace TaskFlow.Core.Interfaces
         Task<IEnumerable<TaskItem>> GetTasksByProjectIdAsync(int projectId);
         Task<IEnumerable<TaskItem>> GetTasksByUserIdAsync(string userId);
         Task<IEnumerable<TaskItem>> GetTasksBySprintIdAsync(int sprintId);
-        Task<IEnumerable<TaskItem>> GetTasksByStatusAsync(System.Threading.Tasks.TaskStatus status);
+        Task<IEnumerable<TaskItem>> GetTasksByStatusAsync(Entities.TaskStatus status);
         Task<TaskItem?> GetTaskWithDetailsAsync(int taskId);
     }
 }
